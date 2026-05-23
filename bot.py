@@ -79,7 +79,9 @@ def handle_resep(message):
     
     INFO NUTRISI (Estimasi per porsi):
     - Kalori: [X] kcal
-    - Protein: [X] gram
+    - Protein: [X] g
+    - Lemak: [X] g
+    - Karbo: [X] g
     """
     
     try:
