@@ -3,23 +3,34 @@ import telebot
 from google import genai
 from dotenv import load_dotenv
 
-# Load API Key dari file .env
+# Load API Key
 load_dotenv()
+
+# --- BLOK DEBUGGING TINGKAT DEWA ---
+print("=== CEK VARIABEL DARI RAILWAY ===")
+daftar_kunci = list(os.environ.keys())
+print(f"Apakah ada kata GEMINI di Railway? : {any('GEMINI' in k for k in daftar_kunci)}")
+print(f"Apakah ada kata TELEGRAM di Railway? : {any('TELEGRAM' in k for k in daftar_kunci)}")
+print("=================================")
+
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
-if GEMINI_API_KEY is None:
-    print("⚠️ ERROR: Railway GAGAL membaca variabel GEMINI_API_KEY!")
+if not GEMINI_API_KEY:
+    print("❌ MESIN BERHENTI: Railway benar-benar tidak mengirimkan GEMINI_API_KEY ke Python!")
+    exit() # Mematikan sistem dengan aman tanpa pesan error panjang
 else:
-    print("✅ Railway BERHASIL membaca GEMINI_API_KEY!")
+    print("✅ GEMINI_API_KEY berhasil ditangkap!")
 
+if not TELEGRAM_BOT_TOKEN:
+    print("❌ MESIN BERHENTI: Railway tidak mengirimkan TELEGRAM_BOT_TOKEN!")
+    exit()
+
+# Setup AI & Bot
 client = genai.Client(api_key=GEMINI_API_KEY)
-
-# Setup AI
-client = genai.Client(api_key=GEMINI_API_KEY)
-
-# Setup Telegram Bot (Alat baru untuk mendengarkan chat)
 bot = telebot.TeleBot(TELEGRAM_BOT_TOKEN)
+
+# ... (biarkan sisa kode di bawahnya tetap sama seperti sebelumnya) ...
 
 # Ini yang terjadi kalau Anda ketik /start di Telegram
 @bot.message_handler(commands=['start'])
