@@ -80,3 +80,5 @@ def handle_resep(message):
 # Perintah agar bot selalu hidup dan siap membalas chat
 print("Bot Resep sudah menyala! Silakan buka aplikasi Telegram Anda dan chat bot-nya.")
 bot.polling(none_stop=True)
+
+print("Mancing Railway")
