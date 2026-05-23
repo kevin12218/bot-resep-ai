@@ -8,6 +8,13 @@ load_dotenv()
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
+if GEMINI_API_KEY is None:
+    print("⚠️ ERROR: Railway GAGAL membaca variabel GEMINI_API_KEY!")
+else:
+    print("✅ Railway BERHASIL membaca GEMINI_API_KEY!")
+
+client = genai.Client(api_key=GEMINI_API_KEY)
+
 # Setup AI
 client = genai.Client(api_key=GEMINI_API_KEY)
 
